@@ -1,0 +1,4 @@
+#!/bin/sh
+
+make test
+go tool cover -html=coverage.lcov.info
