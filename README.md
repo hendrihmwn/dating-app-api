@@ -27,7 +27,7 @@ $ make migrate
 # run the application
 $ make run
 
-# run from the docker (make sure all table is migrate)
+# or run from the docker (make sure all table is migrate)
 $ make up
 ```
 
