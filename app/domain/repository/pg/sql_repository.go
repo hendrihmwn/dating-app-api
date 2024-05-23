@@ -45,7 +45,7 @@ const GET_USER_BY_EMAIL = `
 `
 
 const COUNT_USER_PAIR_TODAY = `
-	SELECT COUNT(user_pairs.*)
+	SELECT COUNT(DISTINCT (user_pairs.pair_user_id, user_pairs.status))
 	FROM user_pairs
 	WHERE user_pairs.user_id = $1 
 	  AND user_pairs.created_at >= current_date AND user_pairs.created_at < current_date + interval '1 day'

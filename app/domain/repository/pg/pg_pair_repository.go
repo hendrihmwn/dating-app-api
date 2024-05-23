@@ -24,7 +24,11 @@ func (p *PairRepositoryImpl) Create(ctx context.Context, userPair *entity.UserPa
 		if err := rows.StructScan(res); err != nil {
 			return nil, err
 		}
-
+		if res.Status == 0 {
+			res.StatusLang = "pass"
+		} else {
+			res.StatusLang = "like"
+		}
 	}
 	return res, nil
 }

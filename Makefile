@@ -15,6 +15,14 @@ migrate:
 rollback:
 	migrate -database ${DATABASE_URL} -path migrations down
 
+prepare:
+	go mod tidy
+	go mod vendor
+	go install github.com/vektra/mockery/v2@v2.38.0 1> /dev/null
+	go install gotest.tools/gotestsum@latest 1> /dev/null
+	go install github.com/boumenot/gocover-cobertura@latest 1> /dev/null
+	go install github.com/ggere/gototal-cobertura@latest 1> /dev/null
+
 run:
 	go run serve/main.go
 
@@ -22,3 +30,9 @@ mock:
 	go fmt ./...
 	rm -rf mocks
 	mockery --all --keeptree --dir app
+
+test:
+	go fmt ./...
+	gotestsum --format testname --junitfile junit.xml -- -coverprofile=coverage.lcov.info -covermode count ./app/...
+	gocover-cobertura < coverage.lcov.info > coverage.xml
+	gototal-cobertura < coverage.xml

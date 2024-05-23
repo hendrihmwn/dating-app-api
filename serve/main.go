@@ -32,10 +32,12 @@ func init() {
 	packageService := service.NewPackageService(packageRepository)
 	userService := service.NewUserService(userRepository, userPairRepository, userPackageRepository)
 	userPackageService := service.NewUserPackageService(userPackageRepository, packageRepository, orderRepository)
+	userPairService := service.NewUserPairService(userPairRepository, userPackageRepository)
 
 	userHandler := handler.NewUserHandler(userService)
 	packageHandler := handler.NewPackageHandler(packageService)
 	userPackageHandler := handler.NewUserPackageHandler(userPackageService)
+	userPairHandler := handler.NewUserPairHandler(userPairService)
 
 	r = gin.Default()
 	// Define your handler
@@ -46,6 +48,7 @@ func init() {
 	r.Use(handler.TokenAuth).POST("/purchase", userPackageHandler.Create)
 	r.Use(handler.TokenAuth).GET("/subscribes", userPackageHandler.List)
 	r.Use(handler.TokenAuth).GET("/candidates", userHandler.List)
+	r.Use(handler.TokenAuth).POST("/pair", userPairHandler.Create)
 }
 
 func run() error {

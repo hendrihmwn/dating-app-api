@@ -18,13 +18,13 @@ type GetPackageParams struct {
 }
 
 type GetPackageResponse struct {
-	ID         int64
-	Name       string
-	Act        string
-	Price      int64
-	ValidMonth int
-	CreatedAt  time.Time
-	UpdatedAt  time.Time
+	ID          int64
+	Name        string
+	Act         string
+	Price       int64
+	ValidMonths int
+	CreatedAt   time.Time
+	UpdatedAt   time.Time
 }
 
 type PackageService interface {
@@ -59,13 +59,13 @@ func (p *PackageServiceImpl) Get(ctx context.Context, params GetPackageParams) (
 	}
 
 	return &GetPackageResponse{
-		ID:         packages.ID,
-		Name:       packages.Name,
-		Act:        packages.Act,
-		Price:      packages.Price,
-		ValidMonth: packages.ValidMonths,
-		CreatedAt:  packages.CreatedAt,
-		UpdatedAt:  packages.UpdatedAt,
+		ID:          packages.ID,
+		Name:        packages.Name,
+		Act:         packages.Act,
+		Price:       packages.Price,
+		ValidMonths: packages.ValidMonths,
+		CreatedAt:   packages.CreatedAt,
+		UpdatedAt:   packages.UpdatedAt,
 	}, nil
 }
 

@@ -126,7 +126,11 @@ func (p *UserRepositoryImpl) List(ctx context.Context, args *repository.ListUser
 		if err := rows.StructScan(&user); err != nil {
 			return nil, err
 		}
-
+		if user.Gender == 0 {
+			user.GenderLang = "men"
+		} else {
+			user.GenderLang = "women"
+		}
 		users = append(users, user)
 	}
 

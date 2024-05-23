@@ -88,7 +88,6 @@ func (p *UserPackageServiceImpl) Create(ctx context.Context, params CreateUserPa
 	now := time.Now()
 	expired := now.AddDate(0, pkg.ValidMonths, 0)
 
-	fmt.Println(params.UserId)
 	userPackage, err := p.userPackageRepository.Create(ctx, &entity.UserPackage{
 		UserID:     params.UserId,
 		PackageID:  pkg.ID,

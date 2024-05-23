@@ -13,8 +13,18 @@ type UserHandler struct {
 	mock.Mock
 }
 
-// ListUserServer provides a mock function with given fields: c
-func (_m *UserHandler) ListUserServer(c *gin.Context) {
+// List provides a mock function with given fields: c
+func (_m *UserHandler) List(c *gin.Context) {
+	_m.Called(c)
+}
+
+// Login provides a mock function with given fields: c
+func (_m *UserHandler) Login(c *gin.Context) {
+	_m.Called(c)
+}
+
+// Register provides a mock function with given fields: c
+func (_m *UserHandler) Register(c *gin.Context) {
 	_m.Called(c)
 }
 

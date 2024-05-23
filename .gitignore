@@ -1,0 +1,8 @@
+vendor/
+.env
+.gitconfig
+junit.xml
+coverage.lcov.info
+coverage.xml
+.DS_STORE
+.idea
