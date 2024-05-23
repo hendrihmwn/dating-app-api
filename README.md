@@ -19,13 +19,16 @@ This is the API for dating APP build with golang, gin gonic, and postgresql.
 $ cp example.env .env
 
 # prepare all dependencies
-make prepare
+$ make prepare
 
 # migrate table and seed data
 $ make migrate
 
 # run the application
-make run
+$ make run
+
+# run from the docker (make sure all table is migrate)
+$ make up
 ```
 
 ## How to test

@@ -1,6 +1,24 @@
 version: "3.9"
 services:
+  dating-app:
+    container_name: dating-app
+    working_dir: /app
+    build: .
+    hostname: httpd
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    env_file: .env
+    environment:
+      - DATABASE_HOST=host.docker.internal
+    command: sh -c "go run serve/main.go"
+    depends_on:
+      - db
+    volumes:
+      - ${PWD}:/app
+    ports:
+      - "8000:8000"
   db:
+    container_name: postgres
     image: postgres
     restart: always
     # set shared memory limit when using docker-compose

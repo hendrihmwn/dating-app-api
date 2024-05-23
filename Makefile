@@ -23,6 +23,11 @@ prepare:
 	go install github.com/boumenot/gocover-cobertura@latest 1> /dev/null
 	go install github.com/ggere/gototal-cobertura@latest 1> /dev/null
 
+install:
+	set -e mkdir target/bin
+	go build -o target/bin/dating-app serve/main.go
+	cp target/bin/* /usr/local/bin/
+
 run:
 	go run serve/main.go
 
@@ -36,3 +41,6 @@ test:
 	gotestsum --format testname --junitfile junit.xml -- -coverprofile=coverage.lcov.info -covermode count ./app/...
 	gocover-cobertura < coverage.lcov.info > coverage.xml
 	gototal-cobertura < coverage.xml
+
+up:
+	docker compose up
